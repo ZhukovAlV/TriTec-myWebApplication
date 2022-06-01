@@ -3,25 +3,30 @@ package com.example.myWebApplication.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
 
-    @GetMapping("/page/1")
-    public String getPage1() {
-        return "page1";
-    }
+    // http://localhost:8080/12/5/+
 
-    @GetMapping("/index")
-    public String getIndexPage(Model model) {
-        model.addAttribute("strHello", "Привет, я кот Вася");
-        return "index";
-    }
+  @GetMapping("/{a}/{b}/{operation}")
+  public String mainPage(Model model, @PathVariable String a, @PathVariable String b, @PathVariable String operation) {
+      int aInt = Integer.parseInt(a);
+      int bInt = Integer.parseInt(b);
 
-    @GetMapping("/")
-    public String getMainPage(Model model) {
-        model.addAttribute("strHello", "Hello, I am cat Tom");
-        return "index";
-    }
+      if(operation.equals("+")) model.addAttribute("strHello", aInt + bInt);
+      else if (operation.equals("-")) model.addAttribute("strHello", aInt - bInt);
+      else if (operation.equals("*")) model.addAttribute("strHello", aInt * bInt);
+      else if (operation.equals(":")) model.addAttribute("strHello", aInt / bInt);
 
+      return "index";
+  }
+
+/*  @PostMapping
+  public String mainPage() {
+      return "index";
+  }*/
 }
