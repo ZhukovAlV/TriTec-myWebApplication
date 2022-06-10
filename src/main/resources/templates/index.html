@@ -6,8 +6,15 @@
 </head>
 <body>
 
+<form action="/calculator" method="POST">
+    <input type="text" name="a"/>
+    <input type="text" name="b"/>
+    <input type="text" name="operation"/>
+    <input type="submit" class="button"/>
+</form>
+
 <p>Результат:</p>
-<p th:text="${strHello}"></p>
+<p th:text="${result}"></p>
 
 </body>
 </html>

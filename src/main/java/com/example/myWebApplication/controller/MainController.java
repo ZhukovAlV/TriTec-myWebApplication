@@ -15,16 +15,25 @@ public class MainController {
       int aInt = Integer.parseInt(a);
       int bInt = Integer.parseInt(b);
 
-      if(operation.equals("+")) model.addAttribute("strHello", aInt + bInt);
-      else if (operation.equals("-")) model.addAttribute("strHello", aInt - bInt);
-      else if (operation.equals("*")) model.addAttribute("strHello", aInt * bInt);
-      else if (operation.equals(":")) model.addAttribute("strHello", aInt / bInt);
+      if(operation.equals("+")) model.addAttribute("result", aInt + bInt);
+      else if (operation.equals("-")) model.addAttribute("result", aInt - bInt);
+      else if (operation.equals("*")) model.addAttribute("result", aInt * bInt);
+      else if (operation.equals(":")) model.addAttribute("result", aInt / bInt);
 
       return "index";
   }
 
-/*  @PostMapping
-  public String mainPage() {
-      return "index";
-  }*/
+    @PostMapping("/calculator")
+    public String postExample(Model model, @RequestParam String a, @RequestParam String b, @RequestParam String operation) {
+        int aInt = Integer.parseInt(a);
+        int bInt = Integer.parseInt(b);
+
+        switch (operation) {
+            case "+" -> model.addAttribute("result", aInt + bInt);
+            case "-" -> model.addAttribute("result", aInt - bInt);
+            case "*" -> model.addAttribute("result", aInt * bInt);
+            case ":" -> model.addAttribute("result", aInt / bInt);
+        }
+        return "index";
+    }
 }
