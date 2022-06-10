@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class MainController {
 
-    // http://localhost:8080/12/5/+
-
   @GetMapping("/{a}/{b}/{operation}")
   public String mainPage(Model model, @PathVariable String a, @PathVariable String b, @PathVariable String operation) {
       int aInt = Integer.parseInt(a);
